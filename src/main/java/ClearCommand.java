@@ -1,6 +1,5 @@
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class ClearCommand implements Command {
@@ -12,9 +11,8 @@ public class ClearCommand implements Command {
 
     @Override
     public void exec(String[] args) {
-        Path p = Paths.get(storeInfo.getName());
         try {
-            Files.createFile(p);
+            Files.write(Paths.get(storeInfo.getName()), "{}".getBytes());
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
